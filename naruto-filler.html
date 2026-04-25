@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Naruto Filler Guide</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--bg:#0d1117;--sf:#161b22;--br:#21262d;--tx:#e6edf3;--mu:#7d8590;--on:#f97316;--os:#3b82f6;--ca:#22c55e;--fi:#ef4444;--mi:#f59e0b}
+html,body{height:100%;display:flex;flex-direction:column}
+body{background:var(--bg);color:var(--tx);font-family:-apple-system,"Helvetica Neue",sans-serif}
+#hdr{flex-shrink:0;background:var(--sf);border-bottom:1px solid var(--br);padding:10px 14px 8px}
+.ht{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.logo{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#fff;flex-shrink:0}
+.logo-n{background:linear-gradient(135deg,#f97316,#fbbf24)}
+.logo-s{background:linear-gradient(135deg,#1d4ed8,#3b82f6)}
+.ttl{font-size:15px;font-weight:700}.sub{font-size:10px;color:var(--mu);margin-top:1px}
+.ts{margin-left:auto;display:flex;gap:6px;font-size:10px;color:var(--mu)}
+.ts b{font-weight:700}
+.tabs{display:flex;gap:0;margin-bottom:8px;border-radius:8px;overflow:hidden;border:1px solid var(--br)}
+.tab{flex:1;padding:6px 0;border:none;cursor:pointer;font-size:12px;font-weight:700;background:var(--br);color:var(--mu)}
+.tab.actN{background:var(--on);color:#000}
+.tab.actS2{background:var(--os);color:#fff}
+.flt{display:flex;gap:5px;overflow-x:auto}
+.flt::-webkit-scrollbar{display:none}
+.fb2{flex-shrink:0;padding:4px 12px;border-radius:20px;border:none;font-size:11px;font-weight:600;cursor:pointer;background:var(--br);color:var(--mu)}
+.faAN{background:var(--on)!important;color:#000!important}
+.faAS{background:var(--os)!important;color:#fff!important}
+.faC{background:var(--ca)!important;color:#000!important}
+.faF{background:var(--fi)!important;color:#fff!important}
+.faM{background:var(--mi)!important;color:#000!important}
+#wrap{display:flex;flex:1;min-height:0;overflow:hidden}
+#sb{width:52px;flex-shrink:0;background:var(--sf);border-right:1px solid var(--br);overflow-y:auto;display:flex;flex-direction:column;gap:2px;padding:6px 3px;-webkit-overflow-scrolling:touch}
+#sb::-webkit-scrollbar{display:none}
+.sb{display:flex;flex-direction:column;align-items:center;padding:6px 2px;border-radius:6px;border:none;cursor:pointer;background:transparent;color:var(--mu);font-size:11px;font-weight:700;width:100%}
+.sb.active{background:rgba(249,115,22,0.15);color:var(--on);outline:1px solid rgba(249,115,22,0.35)}
+.sb.actS{background:rgba(59,130,246,0.15);color:var(--os);outline:1px solid rgba(59,130,246,0.35)}
+.fp{font-size:9px;font-weight:700;margin-top:2px}
+.fh{color:var(--fi)}.fm{color:var(--mi)}.fl{color:var(--ca)}
+#mn{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:12px}
+.sh{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.st{font-size:14px;font-weight:700}.sy{font-size:11px;color:var(--mu)}
+.ec{font-size:11px;color:var(--mu);margin-left:auto}
+table{width:100%;border-collapse:collapse;font-size:11px}
+thead tr{border-bottom:1px solid var(--br)}
+th{padding:6px 8px;text-align:left;color:var(--mu);font-size:10px;font-weight:600;letter-spacing:.04em;white-space:nowrap}
+td{padding:7px 8px;border-bottom:1px solid rgba(33,38,45,.5);vertical-align:middle}
+.n{color:var(--mu);white-space:nowrap;font-variant-numeric:tabular-nums}
+.et{color:var(--tx);line-height:1.4}.etf{color:var(--mu);line-height:1.4}
+.b{display:inline-block;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:700;white-space:nowrap}
+.bc{background:rgba(34,197,94,.12);color:var(--ca);border:1px solid rgba(34,197,94,.25)}
+.bf{background:rgba(239,68,68,.12);color:var(--fi);border:1px solid rgba(239,68,68,.25)}
+.bm{background:rgba(245,158,11,.12);color:var(--mi);border:1px solid rgba(245,158,11,.25)}
+tr.hidden{display:none}
+</style>
+</head>
+<body>
+<div id="hdr">
+<div class="ht">
+  <div class="logo logo-n" id="logo">🍥</div>
+  <div><div class="ttl" id="showTitle">Naruto</div><div class="sub" id="showSub">220 Episodes</div></div>
+  <div class="ts" id="statsBox">
+    <span><b style="color:#22c55e">74</b> Canon</span>
+    <span><b style="color:#ef4444">90</b> Filler</span>
+    <span><b style="color:#f59e0b">56</b> Mixed</span>
+  </div>
+</div>
+<div class="tabs">
+  <button class="tab actN" id="tabN" onclick="switchShow(0)">Naruto</button>
+  <button class="tab" id="tabS" onclick="switchShow(1)">Shippuden</button>
+</div>
+<div class="flt">
+  <button class="fb2 faAN" id="btnA" onclick="setF('All')">All</button>
+  <button class="fb2" id="btnC" onclick="setF('Canon')">Canon</button>
+  <button class="fb2" id="btnF" onclick="setF('Filler')">Filler</button>
+  <button class="fb2" id="btnM" onclick="setF('Mixed')">Mixed</button>
+</div>
+</div>
+<div id="wrap">
+<div id="sb"></div>
+<div id="mn">
+<div id="n1" class="panel" style="display:block"><div class="sh"><span class="st">Season 1</span><span class="sy">2002-2003</span><span class="fb" style="color:#22c55e;background:rgba(34,197,94,0.12);padding:2px 9px;border-radius:10px">3% Filler</span><span class="ec">35 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbn1"><tr data-t="Canon" style=""><td class="n">1</td><td class="n">1</td><td><span class="et">Enter: Naruto Uzumaki!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">2</td><td><span class="et">My Name is Konohamaru!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">3</td><td class="n">3</td><td><span class="et">Sasuke and Sakura: Friends or Foes?</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">4</td><td><span class="et">Pass or Fail: Survival Test</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">5</td><td class="n">5</td><td><span class="et">You Failed! Kakashi&#x27;s Final Decision</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">6</td><td><span class="et">A Dangerous Mission! Journey to the Land of Waves!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">7</td><td class="n">7</td><td><span class="et">The Assassin of the Mist!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">8</td><td><span class="et">The Oath of Pain</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">9</td><td class="n">9</td><td><span class="et">Kakashi: Sharingan Warrior</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">10</td><td><span class="et">The Forest of Chakra</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">11</td><td class="n">11</td><td><span class="et">The Land Where a Hero Once Lived</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">12</td><td><span class="et">Battle on the Bridge! Zabuza Returns!!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">13</td><td class="n">13</td><td><span class="et">Haku&#x27;s Secret Jutsu: Crystal Ice Mirrors</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">14</td><td><span class="et">The Number One Hyperactive, Knucklehead Ninja Joins the Fight!!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">15</td><td class="n">15</td><td><span class="et">Zero Visibility: The Sharingan Shatters</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">16</td><td><span class="et">The Broken Seal</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">17</td><td class="n">17</td><td><span class="et">White Past: Hidden Ambition</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">18</td><td><span class="et">The Weapons Known as Shinobi</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">19</td><td class="n">19</td><td><span class="et">The Demon in the Snow</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">20</td><td class="n">20</td><td><span class="et">A New Chapter Begins: The Chunin Exam!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">21</td><td class="n">21</td><td><span class="et">Identify Yourself: Powerful New Rivals</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">22</td><td class="n">22</td><td><span class="et">Chunin Challenge: Rock Lee vs. Sasuke!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">23</td><td class="n">23</td><td><span class="et">Genin Takedown! All Nine Rookies Face Off!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">24</td><td class="n">24</td><td><span class="et">Start Your Engines: The Chunin Exam Begins!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">25</td><td class="n">25</td><td><span class="et">The Tenth Question: All or Nothing!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">26</td><td class="n">26</td><td><span class="etf">Special Report: Live from the Forest of Death!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">27</td><td class="n">27</td><td><span class="et">The Chunin Exam Stage 2: The Forest of Death</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">28</td><td class="n">28</td><td><span class="et">Eat or be Eaten: Panic in the Forest</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">29</td><td class="n">29</td><td><span class="et">Naruto&#x27;s Counterattack: Never Give In!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">30</td><td class="n">30</td><td><span class="et">The Sharingan Revived: Dragon-Flame Jutsu!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">31</td><td class="n">31</td><td><span class="et">Bushy Brow&#x27;s Pledge: Undying Love and Protection!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">32</td><td class="n">32</td><td><span class="et">Sakura Blossoms!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">33</td><td class="n">33</td><td><span class="et">Battle Formation: Ino-Shika-Cho!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">34</td><td class="n">34</td><td><span class="et">Akamaru Trembles: Gaara&#x27;s Cruel Strength!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">35</td><td class="n">35</td><td><span class="et">The Scroll&#x27;s Secret: No Peeking Allowed</span></td><td><span class="b bc">Canon</span></td></tr>
+</tbody></table></div>
+<div id="n2" class="panel" style="display:none"><div class="sh"><span class="st">Season 2</span><span class="sy">2003</span><span class="fb" style="color:#22c55e;background:rgba(34,197,94,0.12);padding:2px 9px;border-radius:10px">0% Filler</span><span class="ec">48 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbn2"><tr data-t="Canon" style=""><td class="n">1</td><td class="n">36</td><td><span class="et">Clone vs. Clone: Mine are Better than Yours!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">37</td><td><span class="et">Surviving the Cut! The Rookie Nine Together Again!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">3</td><td class="n">38</td><td><span class="et">Narrowing the Field: Sudden Death Elimination!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">39</td><td><span class="et">Bushy Brow&#x27;s Jealousy: Lions Barrage Unleashed!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">5</td><td class="n">40</td><td><span class="et">Kakashi and Orochimaru: Face-to-Face!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">41</td><td><span class="et">Kunoichi Rumble: The Rivals Get Serious!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">7</td><td class="n">42</td><td><span class="et">The Ultimate Battle: Cha!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">43</td><td><span class="et">Killer Kunoichi and a Shaky Shikamaru</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">9</td><td class="n">44</td><td><span class="et">Akamaru Unleashed! Who&#x27;s Top Dog Now?</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">45</td><td><span class="et">Surprise Attack! Naruto&#x27;s Secret Weapon!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">11</td><td class="n">46</td><td><span class="et">Byakugan Battle: Hinata Grows Bold!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">47</td><td><span class="et">A Failure Stands Tall!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">13</td><td class="n">48</td><td><span class="et">Gaara vs. Rock Lee: The Power of Youth Explodes!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">49</td><td><span class="et">Lee&#x27;s Hidden Strength: Forbidden Secret Jutsu!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">15</td><td class="n">50</td><td><span class="et">The Fifth Gate: A Splendid Ninja is Born</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">51</td><td><span class="et">A Shadow in Darkness: Danger Approaches Sasuke</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">17</td><td class="n">52</td><td><span class="et">Ebisu Returns: Naruto&#x27;s Toughest Training Yet!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">53</td><td><span class="et">Long Time No See: Jiraiya Returns!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">19</td><td class="n">54</td><td><span class="et">The Summoning Jutsu: Wisdom of the Toad Sage!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">20</td><td class="n">55</td><td><span class="et">A Feeling of Yearning, A Flower Full of Hope</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">21</td><td class="n">56</td><td><span class="et">Live or Die: Risk it All to Win it All!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">22</td><td class="n">57</td><td><span class="et">He Flies! He Jumps! He Lurks! Chief Toad Appears!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">23</td><td class="n">58</td><td><span class="et">Hospital Besieged: The Evil Hand Revealed!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">24</td><td class="n">59</td><td><span class="et">The Final Rounds: Rush to the Battle Arena!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">25</td><td class="n">60</td><td><span class="et">Byakugan vs. Shadow Clone</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">26</td><td class="n">61</td><td><span class="et">Ultimate Defense: Zero Blind Spot!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">27</td><td class="n">62</td><td><span class="et">A Failure&#x27;s True Power</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">28</td><td class="n">63</td><td><span class="et">Hit it or Quit it: The Final Rounds Get Complicated!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">29</td><td class="n">64</td><td><span class="et">Zero Motivation: The Guy with Cloud Envy!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">30</td><td class="n">65</td><td><span class="et">Dancing Leaf, Squirming Sand</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">31</td><td class="n">66</td><td><span class="et">Bushy Brow&#x27;s Jutsu: Sasuke Style!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">32</td><td class="n">67</td><td><span class="et">Late for the Show, But Ready to Go! The Ultimate Secret Technique is Born!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">33</td><td class="n">68</td><td><span class="et">Zero Hour! The Destruction of the Hidden Leaf Village Begins!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">34</td><td class="n">69</td><td><span class="et">Village in Distress: A New A-Ranked Mission!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">35</td><td class="n">70</td><td><span class="et">A Shirker&#x27;s Call to Action: A Layabout No More!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">36</td><td class="n">71</td><td><span class="et">An Unrivaled Match: Hokage Battle Royale!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">37</td><td class="n">72</td><td><span class="et">A Mistake from the Past: A Face Revealed!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">38</td><td class="n">73</td><td><span class="et">Forbidden Secret Technique: Reaper Death Seal!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">39</td><td class="n">74</td><td><span class="et">Astonishing Truth! Gaara&#x27;s Identity Emerges!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">40</td><td class="n">75</td><td><span class="et">Sasuke&#x27;s Decision: Pushed to the Edge!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">41</td><td class="n">76</td><td><span class="et">Assassin of the Moonlit Night</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">42</td><td class="n">77</td><td><span class="et">Light vs. Dark: The Two Faces of Gaara</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">43</td><td class="n">78</td><td><span class="et">Naruto&#x27;s Ninja Handbook</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">44</td><td class="n">79</td><td><span class="et">Beyond the Limit of Darkness and Light</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">45</td><td class="n">80</td><td><span class="et">The Third Hokage, Forever...</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">46</td><td class="n">81</td><td><span class="et">Return of the Morning Mist</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">47</td><td class="n">82</td><td><span class="et">Eye to Eye: Sharingan vs. Sharingan!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">48</td><td class="n">83</td><td><span class="et">Jiraiya: Naruto&#x27;s Potential Disaster!</span></td><td><span class="b bm">Mixed</span></td></tr>
+</tbody></table></div>
+<div id="n3" class="panel" style="display:none"><div class="sh"><span class="st">Season 3</span><span class="sy">2003-2004</span><span class="fb" style="color:#22c55e;background:rgba(34,197,94,0.12);padding:2px 9px;border-radius:10px">15% Filler</span><span class="ec">48 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbn3"><tr data-t="Canon" style=""><td class="n">1</td><td class="n">84</td><td><span class="et">Roar, Chidori! Brother vs. Brother!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">85</td><td><span class="et">Hate Among the Uchihas: The Last of the Clan!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">3</td><td class="n">86</td><td><span class="et">A New Training Begins: I Will Be Strong!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">87</td><td><span class="et">Keep on Training: Pop Goes the Water Balloon!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">5</td><td class="n">88</td><td><span class="et">Focal Point: The Mark of the Leaf</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">89</td><td><span class="et">An Impossible Choice: The Pain Within Tsunade&#x27;s Heart</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">7</td><td class="n">90</td><td><span class="et">Unforgivable! A Total Lack of Respect!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">91</td><td><span class="et">Inheritence! The Necklace of Death!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">9</td><td class="n">92</td><td><span class="et">A Dubious Offer! Tsunade&#x27;s Choice!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">93</td><td><span class="et">Breakdown! The Deal is Off!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">11</td><td class="n">94</td><td><span class="et">Attack! Fury of the Rasengan!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">95</td><td><span class="et">The Fifth Hokage! A Life on the Line!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">13</td><td class="n">96</td><td><span class="et">Deadlock! Sannin Showdown!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">97</td><td><span class="etf">Kidnapped! Naruto&#x27;s Hot Spring Adventure!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">15</td><td class="n">98</td><td><span class="et">Tsunade&#x27;s Warning: Ninja No More!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">99</td><td><span class="et">The Will of Fire Still Burns!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">17</td><td class="n">100</td><td><span class="et">Sensei and Student: The Bond of the Shinobi</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">101</td><td><span class="etf">Gotta See! Gotta Know! Kakashi-Sensei&#x27;s True Face!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">19</td><td class="n">102</td><td><span class="etf">Mission: Help an Old Friend in the Land of Tea</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">20</td><td class="n">103</td><td><span class="etf">The Race is on! Trouble on the High Seas!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">21</td><td class="n">104</td><td><span class="etf">Run Idate Run! Nagi Island Awaits!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">22</td><td class="n">105</td><td><span class="etf">A Fierce Battle of Rolling Thunder!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">23</td><td class="n">106</td><td><span class="etf">The Last Leg: A Final Act of Desperation</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">24</td><td class="n">107</td><td><span class="et">The Battle Begins: Naruto vs. Sasuke</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">25</td><td class="n">108</td><td><span class="et">Bitter Rivals and Broken Bonds</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">26</td><td class="n">109</td><td><span class="et">An Invitation from the Sound</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">27</td><td class="n">110</td><td><span class="et">Formation! The Sasuke Retrieval Squad</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">28</td><td class="n">111</td><td><span class="et">Sound vs. Leaf</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">29</td><td class="n">112</td><td><span class="et">Squad Mutiny: Everything Falls Apart!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">30</td><td class="n">113</td><td><span class="et">Full Throttle Power! Choji, Ablaze!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">31</td><td class="n">114</td><td><span class="et">Good-bye Old Friend...! I&#x27;ll Always Believe in You!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">32</td><td class="n">115</td><td><span class="et">Your Opponent Is Me!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">33</td><td class="n">116</td><td><span class="et">360 Degrees of Vision: The Byakugan&#x27;s Blind Spot</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">34</td><td class="n">117</td><td><span class="et">Losing is Not an Option!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">35</td><td class="n">118</td><td><span class="et">The Vessel Arrives Too Late</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">36</td><td class="n">119</td><td><span class="et">Miscalculation: A New Enemy Appears!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">37</td><td class="n">120</td><td><span class="et">Roar and Howl! The Ultimate Tag Team</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">38</td><td class="n">121</td><td><span class="et">To Each His Own Battle</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">39</td><td class="n">122</td><td><span class="et">Fakeout: Shikamaru&#x27;s Comeback!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">40</td><td class="n">123</td><td><span class="et">The Leaf&#x27;s Handsome Devil!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">41</td><td class="n">124</td><td><span class="et">The Beast Within</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">42</td><td class="n">125</td><td><span class="et">The Sand Shinobi: Allies of the Leaf</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">43</td><td class="n">126</td><td><span class="et">Showdown: Gaara vs. Kimimaro!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">44</td><td class="n">127</td><td><span class="et">Vengeful Strike! The Bracken Dance</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">45</td><td class="n">128</td><td><span class="et">A Cry on Deaf Ears</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">46</td><td class="n">129</td><td><span class="et">Brothers: Distance Among the Uchiha</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">47</td><td class="n">130</td><td><span class="et">Father and Son, the Broken Crest</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">48</td><td class="n">131</td><td><span class="et">The Secrets of the Mangekyo Sharingan!</span></td><td><span class="b bm">Mixed</span></td></tr>
+</tbody></table></div>
+<div id="n4" class="panel" style="display:none"><div class="sh"><span class="st">Season 4</span><span class="sy">2004</span><span class="fb" style="color:#ef4444;background:rgba(239,68,68,0.12);padding:2px 9px;border-radius:10px">88% Filler</span><span class="ec">48 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbn4"><tr data-t="Canon" style=""><td class="n">1</td><td class="n">132</td><td><span class="et">For a Friend</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">133</td><td><span class="et">A Plea From a Friend</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">3</td><td class="n">134</td><td><span class="et">The End of Tears</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">135</td><td><span class="et">The Promise That Could Not Be Kept</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">5</td><td class="n">136</td><td><span class="etf">Deep Cover!? A Super S-Ranked Mission!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">137</td><td><span class="etf">A Town of Outlaws, the Shadow of the Fuma Clan</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">7</td><td class="n">138</td><td><span class="etf">Pure Betrayal, and a Fleeting Plea!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">139</td><td><span class="etf">Pure Terror! The House of Orochimaru</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">9</td><td class="n">140</td><td><span class="etf">Two Heartbeats: Kabuto&#x27;s Trap</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">141</td><td><span class="et">Sakura&#x27;s Determination</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">11</td><td class="n">142</td><td><span class="et">The Three Villains from the Maximum Security Prison</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">143</td><td><span class="etf">Tonton! I&#x27;m Counting on You!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">13</td><td class="n">144</td><td><span class="etf">A New Squad! Two People and a Dog?!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">145</td><td><span class="etf">A New Formation: Ino-Shika-Cho!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">15</td><td class="n">146</td><td><span class="etf">Orochimaru&#x27;s Shadow</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">147</td><td><span class="etf">A Clash of Fate: You Can&#x27;t Bring Me Down</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">17</td><td class="n">148</td><td><span class="etf">Search for the Rare Bikochu Beetle</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">149</td><td><span class="etf">What&#x27;s the Difference? Don&#x27;t All Insects Look Alike?</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">19</td><td class="n">150</td><td><span class="etf">A Battle of Bugs: The Deceivers and the Deceived</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">20</td><td class="n">151</td><td><span class="etf">Blaze Away Byakugan: This Is My Ninja Way</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">21</td><td class="n">152</td><td><span class="etf">Funeral March for the Living</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">22</td><td class="n">153</td><td><span class="etf">A Lesson Learned: The Iron Fist of Love</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">23</td><td class="n">154</td><td><span class="etf">The Enemy of the Byakugan</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">24</td><td class="n">155</td><td><span class="etf">The Dark Creeping Clouds</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">25</td><td class="n">156</td><td><span class="etf">Raiga&#x27;s Counterattack</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">26</td><td class="n">157</td><td><span class="etf">Run! The Curry of Life</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">27</td><td class="n">158</td><td><span class="etf">Follow My Lead! The Great Survival Challenge</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">28</td><td class="n">159</td><td><span class="etf">Bounty Hunter from the Wilderness</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">29</td><td class="n">160</td><td><span class="etf">Hunt or Be Hunted?! Showdown at the O.K. Temple!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">30</td><td class="n">161</td><td><span class="etf">The Appearance of Strange Visitors</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">31</td><td class="n">162</td><td><span class="etf">The Cursed Warrior</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">32</td><td class="n">163</td><td><span class="etf">The Tactician&#x27;s Intent</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">33</td><td class="n">164</td><td><span class="etf">Too Late for Help</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">34</td><td class="n">165</td><td><span class="etf">The Death of Naruto</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">35</td><td class="n">166</td><td><span class="etf">When Time Stands Still</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">36</td><td class="n">167</td><td><span class="etf">When Egrets Flap Their Wings</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">37</td><td class="n">168</td><td><span class="etf">Mix It, Stretch It, Boil It Up! Burn, Copper Pot, Burn!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">38</td><td class="n">169</td><td><span class="etf">Remembrance: The Lost Page</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">39</td><td class="n">170</td><td><span class="etf">The Closed Door</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">40</td><td class="n">171</td><td><span class="etf">Infiltration: The Set-Up!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">41</td><td class="n">172</td><td><span class="etf">Despair: A Fractured Heart</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">42</td><td class="n">173</td><td><span class="etf">The Battle at Sea: The Power Unleashed!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">43</td><td class="n">174</td><td><span class="etf">Impossible! Celebrity Ninja Art - Money Style Jutsu!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">44</td><td class="n">175</td><td><span class="etf">The Treasure Hunt is On!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">45</td><td class="n">176</td><td><span class="etf">Run, Dodge, Zigzag! Chase or Be Chased!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">46</td><td class="n">177</td><td><span class="etf">Please, Mr. Postman!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">47</td><td class="n">178</td><td><span class="etf">Encounter! The Boy with a Star&#x27;s Name</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">48</td><td class="n">179</td><td><span class="etf">The Remembered Lullaby</span></td><td><span class="b bf">Filler</span></td></tr>
+</tbody></table></div>
+<div id="n5" class="panel" style="display:none"><div class="sh"><span class="st">Season 5</span><span class="sy">2004-2005</span><span class="fb" style="color:#ef4444;background:rgba(239,68,68,0.12);padding:2px 9px;border-radius:10px">98% Filler</span><span class="ec">41 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbn5"><tr data-t="Filler" style=""><td class="n">1</td><td class="n">180</td><td><span class="etf">Hidden Jutsu: The Price of The Ninja Art: Kujaku</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">181</td><td><span class="etf">Hoshikage, The Buried Truth</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">3</td><td class="n">182</td><td><span class="etf">Reunion, The Remaining time</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">183</td><td><span class="etf">The Star&#x27;s Radiance</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">5</td><td class="n">184</td><td><span class="etf">Kiba&#x27;s Long Day!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">185</td><td><span class="etf">A Legend from the Hidden Leaf: The Onbaa!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">7</td><td class="n">186</td><td><span class="etf">Laughing Shino</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">187</td><td><span class="etf">Open for Business! The Leaf Moving Service</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">9</td><td class="n">188</td><td><span class="etf">Mystery of the Targeted Merchants</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">189</td><td><span class="etf">A Limitless Supply of Ninja Tools</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">11</td><td class="n">190</td><td><span class="etf">The Byakugan Sees the Blind Spot</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">191</td><td><span class="etf">Forecast: Death! Cloudy with Chance of Sun</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">13</td><td class="n">192</td><td><span class="etf">Ino Screams! Chubby Paradise!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">193</td><td><span class="etf">Viva Dojo Challenge! Youth Is All About Passion!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">15</td><td class="n">194</td><td><span class="etf">The Mysterious Curse of the Haunted Castle</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">195</td><td><span class="etf">The Third Super-Beast!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">17</td><td class="n">196</td><td><span class="etf">Hot-Blooded Confrontation: Student vs. Sensei</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">197</td><td><span class="etf">Crisis! The Hidden Leaf 11 Gather!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">19</td><td class="n">198</td><td><span class="etf">The ANBU Gives Up? Naruto&#x27;s Recollection</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">20</td><td class="n">199</td><td><span class="etf">The Missed Target</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">21</td><td class="n">200</td><td><span class="etf">The Powerful Helper</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">22</td><td class="n">201</td><td><span class="etf">Multiple Traps! Countdown to Destruction</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">23</td><td class="n">202</td><td><span class="etf">The Top 5 Ninja Battles</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">24</td><td class="n">203</td><td><span class="etf">Kurenai&#x27;s Decision, Squad 8 Left Behind</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">25</td><td class="n">204</td><td><span class="etf">Yakumo&#x27;s Sealed Ability</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">26</td><td class="n">205</td><td><span class="etf">Kurenai&#x27;s Top-Secret Mission: The Promise With the Third Hokage</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">27</td><td class="n">206</td><td><span class="etf">Genjutsu or Reality?</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">28</td><td class="n">207</td><td><span class="etf">The Supposed Sealed Ability</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">29</td><td class="n">208</td><td><span class="etf">The Weight of the Prized Artifact!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">30</td><td class="n">209</td><td><span class="etf">The Enemy: Ninja Dropouts</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">31</td><td class="n">210</td><td><span class="etf">The Bewildering Forest</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">32</td><td class="n">211</td><td><span class="etf">Memory of Flames</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">33</td><td class="n">212</td><td><span class="etf">To Each His Own Path</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">34</td><td class="n">213</td><td><span class="etf">Vanished Memories</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">35</td><td class="n">214</td><td><span class="etf">Bringing Back Reality</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">36</td><td class="n">215</td><td><span class="etf">A Past to Be Erased</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">37</td><td class="n">216</td><td><span class="etf">The Targeted Shukaku</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">38</td><td class="n">217</td><td><span class="etf">Sand Alliance with the Leaf Shinobi</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">39</td><td class="n">218</td><td><span class="etf">The Counterattack!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">40</td><td class="n">219</td><td><span class="etf">The Ultimate Weapon Reborn</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">41</td><td class="n">220</td><td><span class="et">Departure</span></td><td><span class="b bm">Mixed</span></td></tr>
+</tbody></table></div>
+
+<div id="s1" class="panel" style="display:none"><div class="sh"><span class="st">Kazekage Rescue Arc</span><span class="sy">2007</span><span class="fb" style="color:#22c55e;background:rgba(34,197,94,0.12);padding:2px 9px;border-radius:10px">0% Filler</span><span class="ec">32 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbs1"><tr data-t="Mixed" style=""><td class="n">1</td><td class="n">1</td><td><span class="et">Homecoming</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">2</td><td><span class="et">The Akatsuki Makes Its Move</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">3</td><td class="n">3</td><td><span class="et">The Results of Training</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">4</td><td><span class="et">The Jinchuriki of the Sand</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">5</td><td class="n">5</td><td><span class="et">The Kazekage Stands Tall</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">6</td><td><span class="et">Mission Cleared</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">7</td><td class="n">7</td><td><span class="et">Run, Kankuro</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">8</td><td><span class="et">Team Kakashi, Deployed</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">9</td><td class="n">9</td><td><span class="et">The Jinchuriki&#x27;s Tears</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">10</td><td><span class="et">Sealing Jutsu: Nine Phantom Dragons</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">11</td><td class="n">11</td><td><span class="et">The Medical Ninja&#x27;s Student</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">12</td><td><span class="et">The Retired Granny&#x27;s Determination</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">13</td><td class="n">13</td><td><span class="et">A Meeting With Destiny</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">14</td><td><span class="et">Naruto&#x27;s Growth</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">15</td><td class="n">15</td><td><span class="et">The Secret Weapon is Called....</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">16</td><td><span class="et">The Secret of Jinchuriki</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">17</td><td class="n">17</td><td><span class="et">The Death of Gaara!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">18</td><td><span class="et">Charge Tactic! Button Hook Entry!!</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">19</td><td class="n">19</td><td><span class="et">Traps Activate! Team Guy&#x27;s Enemies</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">20</td><td class="n">20</td><td><span class="et">Hiruko vs. Two Kunoichi!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">21</td><td class="n">21</td><td><span class="et">Sasori&#x27;s Real Face</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">22</td><td class="n">22</td><td><span class="et">Chiyo&#x27;s Secret Skills</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">23</td><td class="n">23</td><td><span class="et">Father and Mother</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">24</td><td class="n">24</td><td><span class="et">The Third Kazekage</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">25</td><td class="n">25</td><td><span class="et">Three Minutes Between Life and Death</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">26</td><td class="n">26</td><td><span class="et">Puppet Fight: 10 vs. 100!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">27</td><td class="n">27</td><td><span class="et">Impossible Dream</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">28</td><td class="n">28</td><td><span class="et">Beasts! Alive Again!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">29</td><td class="n">29</td><td><span class="et">Kakashi Enlightened!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">30</td><td class="n">30</td><td><span class="et">Aesthetics of an Instant</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">31</td><td class="n">31</td><td><span class="et">The Legacy!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">32</td><td class="n">32</td><td><span class="et">Return of the Kazekage</span></td><td><span class="b bc">Canon</span></td></tr>
+</tbody></table></div>
+<div id="s2" class="panel" style="display:none"><div class="sh"><span class="st">Tenchi Bridge Arc</span><span class="sy">2007</span><span class="fb" style="color:#22c55e;background:rgba(34,197,94,0.12);padding:2px 9px;border-radius:10px">0% Filler</span><span class="ec">21 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbs2"><tr data-t="Canon" style=""><td class="n">1</td><td class="n">33</td><td><span class="et">The New Target</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">34</td><td><span class="et">Formation! New Team Kakashi!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">3</td><td class="n">35</td><td><span class="et">An Unnecessary Addition</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">36</td><td><span class="et">The Fake Smile</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">5</td><td class="n">37</td><td><span class="et">Untitled</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">38</td><td><span class="et">Simulation</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">7</td><td class="n">39</td><td><span class="et">The Tenchi Bridge</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">40</td><td><span class="et">Nine-Tails Unleashed</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">9</td><td class="n">41</td><td><span class="et">The Top-Secret Mission Begins</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">42</td><td><span class="et">Orochimaru vs. Jinchuriki</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">11</td><td class="n">43</td><td><span class="et">Sakura&#x27;s Tears</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">44</td><td><span class="et">The Secret of the Battle!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">13</td><td class="n">45</td><td><span class="et">The Consequences of Betrayal</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">46</td><td><span class="et">The Unfinished Page</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">15</td><td class="n">47</td><td><span class="et">Infiltration: The Den of the Snake!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">48</td><td><span class="et">Bonds</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">17</td><td class="n">49</td><td><span class="et">Something Important...</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">50</td><td><span class="et">The Picture Book&#x27;s Story</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">19</td><td class="n">51</td><td><span class="et">Reunion</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">20</td><td class="n">52</td><td><span class="et">The Power of the Uchiha</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">21</td><td class="n">53</td><td><span class="et">Title</span></td><td><span class="b bc">Canon</span></td></tr>
+</tbody></table></div>
+<div id="s3" class="panel" style="display:none"><div class="sh"><span class="st">Twelve Guardian Ninja (Filler)</span><span class="sy">2007-2008</span><span class="fb" style="color:#ef4444;background:rgba(239,68,68,0.12);padding:2px 9px;border-radius:10px">83% Filler</span><span class="ec">18 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbs3"><tr data-t="Mixed" style=""><td class="n">1</td><td class="n">54</td><td><span class="et">Nightmare</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">55</td><td><span class="et">Wind</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">3</td><td class="n">56</td><td><span class="et">Squirming</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">57</td><td><span class="etf">Robbed of Sleep</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">5</td><td class="n">58</td><td><span class="etf">Loneliness</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">59</td><td><span class="etf">A New Enemy</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">7</td><td class="n">60</td><td><span class="etf">Impermanence</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">61</td><td><span class="etf">Contact</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">9</td><td class="n">62</td><td><span class="etf">Teammate</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">63</td><td><span class="etf">The Two Kings</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">11</td><td class="n">64</td><td><span class="etf">The Jet-Black Signal Fire</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">65</td><td><span class="etf">Lockdown of Darkness</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">13</td><td class="n">66</td><td><span class="etf">Revived Souls</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">67</td><td><span class="etf">Everyone&#x27;s Struggle to the Death</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">15</td><td class="n">68</td><td><span class="etf">Moment of Awakening</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">69</td><td><span class="etf">Despair</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">17</td><td class="n">70</td><td><span class="etf">Resonance</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">71</td><td><span class="etf">My Friend</span></td><td><span class="b bf">Filler</span></td></tr>
+</tbody></table></div>
+<div id="s4" class="panel" style="display:none"><div class="sh"><span class="st">Hidan &amp; Kakuzu Arc</span><span class="sy">2008</span><span class="fb" style="color:#22c55e;background:rgba(34,197,94,0.12);padding:2px 9px;border-radius:10px">0% Filler</span><span class="ec">19 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbs4"><tr data-t="Canon" style=""><td class="n">1</td><td class="n">72</td><td><span class="et">The Quietly Approaching Threat</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">73</td><td><span class="et">Akatsuki&#x27;s Invasion</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">3</td><td class="n">74</td><td><span class="et">Under the Starry Sky</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">75</td><td><span class="et">The Old Monk&#x27;s Prayer</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">5</td><td class="n">76</td><td><span class="et">The Next Step</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">77</td><td><span class="et">Climbing Silver</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">7</td><td class="n">78</td><td><span class="et">The Judgment</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">79</td><td><span class="et">Unfulfilled Scream</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">9</td><td class="n">80</td><td><span class="et">Last Words</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">81</td><td><span class="et">Sad News</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">11</td><td class="n">82</td><td><span class="et">Team Ten</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">83</td><td><span class="et">Target: Locked On</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">13</td><td class="n">84</td><td><span class="et">Kakuzu&#x27;s Abilities</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">85</td><td><span class="et">Terrifying Secret</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">15</td><td class="n">86</td><td><span class="et">Shikamaru&#x27;s Genius</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">87</td><td><span class="et">When You Curse Someone, You Dig Your Own Grave</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">17</td><td class="n">88</td><td><span class="et">Wind Style: Rasen Shuriken!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">89</td><td><span class="et">The Price of Power</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">19</td><td class="n">90</td><td><span class="et">A Shinobi&#x27;s Determination</span></td><td><span class="b bm">Mixed</span></td></tr>
+</tbody></table></div>
+<div id="s5" class="panel" style="display:none"><div class="sh"><span class="st">Three-Tails Arc (Filler)</span><span class="sy">2008</span><span class="fb" style="color:#ef4444;background:rgba(239,68,68,0.12);padding:2px 9px;border-radius:10px">100% Filler</span><span class="ec">22 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbs5"><tr data-t="Filler" style=""><td class="n">1</td><td class="n">91</td><td><span class="etf">Orochimaru&#x27;s Hideout Discovered</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">92</td><td><span class="etf">Encounter</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">3</td><td class="n">93</td><td><span class="etf">Connecting Hearts</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">94</td><td><span class="etf">A Night of Rain</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">5</td><td class="n">95</td><td><span class="etf">The Two Charms</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">96</td><td><span class="etf">The Unseeing Enemy</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">7</td><td class="n">97</td><td><span class="etf">The Labyrinth of Distorted Reflection</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">98</td><td><span class="etf">The Target Appears</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">9</td><td class="n">99</td><td><span class="etf">The Rampaging Tailed Beast</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">100</td><td><span class="etf">Inside the Mist</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">11</td><td class="n">101</td><td><span class="etf">Everyone&#x27;s Feelings</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">102</td><td><span class="etf">Regroup!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">13</td><td class="n">103</td><td><span class="etf">The Four-Corner Sealing Barrier</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">104</td><td><span class="etf">Breaking the Crystal Style</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">15</td><td class="n">105</td><td><span class="etf">The Battle Over the Barrier</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">106</td><td><span class="etf">Red Camellia</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">17</td><td class="n">107</td><td><span class="etf">Strange Bedfellows</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">108</td><td><span class="etf">Guidepost of the Camellia</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">19</td><td class="n">109</td><td><span class="etf">Cursed Seal Counterattack</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">20</td><td class="n">110</td><td><span class="etf">Memory of Guilt</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">21</td><td class="n">111</td><td><span class="etf">Shattered Promise</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">22</td><td class="n">112</td><td><span class="etf">A Place to Return To</span></td><td><span class="b bf">Filler</span></td></tr>
+</tbody></table></div>
+<div id="s6" class="panel" style="display:none"><div class="sh"><span class="st">Itachi Pursuit Arc</span><span class="sy">2008-2009</span><span class="fb" style="color:#22c55e;background:rgba(34,197,94,0.12);padding:2px 9px;border-radius:10px">0% Filler</span><span class="ec">31 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbs6"><tr data-t="Mixed" style=""><td class="n">1</td><td class="n">113</td><td><span class="et">The Serpent&#x27;s Pupil</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">114</td><td><span class="et">Eye of a Hawk</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">3</td><td class="n">115</td><td><span class="et">Zabuza&#x27;s Blade</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">116</td><td><span class="et">Guardian of the Iron Wall</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">5</td><td class="n">117</td><td><span class="et">Jugo of the Northern Hideout</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">118</td><td><span class="et">Formation!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">7</td><td class="n">119</td><td><span class="et">Kakashi Chronicles: A Boy&#x27;s Life on the Battlefield, Part 1</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">120</td><td><span class="et">Kakashi Chronicles: A Boy&#x27;s Life on the Battlefield, Part 2</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">9</td><td class="n">121</td><td><span class="et">Assemble</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">122</td><td><span class="et">The Hunt</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">11</td><td class="n">123</td><td><span class="et">Clash!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">124</td><td><span class="et">Art</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">13</td><td class="n">125</td><td><span class="et">Disappearance</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">126</td><td><span class="et">Twilight</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">15</td><td class="n">127</td><td><span class="et">Tales of a Gutsy Ninja ~Jiraiya Ninja Scroll~ Part 1</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">128</td><td><span class="et">Tales of a Gutsy Ninja ~Jiraiya Ninja Scroll~ Part 2</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">17</td><td class="n">129</td><td><span class="et">Infiltrate! The Village Hidden in the Rain</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">130</td><td><span class="et">The Man Who Became God</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">19</td><td class="n">131</td><td><span class="et">Honored Sage Mode!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">20</td><td class="n">132</td><td><span class="et">In Attendance, the Six Paths of Pain</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">21</td><td class="n">133</td><td><span class="et">The Tale of Jiraiya the Gallant</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">22</td><td class="n">134</td><td><span class="et">Banquet Invitation</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">23</td><td class="n">135</td><td><span class="et">The Longest Moment...</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">24</td><td class="n">136</td><td><span class="et">The Light &amp; Dark of the Mangekyo Sharingan</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">25</td><td class="n">137</td><td><span class="et">Amaterasu!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">26</td><td class="n">138</td><td><span class="et">The End</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">27</td><td class="n">139</td><td><span class="et">The Mystery of Tobi</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">28</td><td class="n">140</td><td><span class="et">Fate</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">29</td><td class="n">141</td><td><span class="et">Truth</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">30</td><td class="n">142</td><td><span class="et">Battle of Unraikyo</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">31</td><td class="n">143</td><td><span class="et">The Eight Tails Vs. Sasuke</span></td><td><span class="b bc">Canon</span></td></tr>
+</tbody></table></div>
+<div id="s7" class="panel" style="display:none"><div class="sh"><span class="st">Six-Tails Unleashed (Filler)</span><span class="sy">2009</span><span class="fb" style="color:#ef4444;background:rgba(239,68,68,0.12);padding:2px 9px;border-radius:10px">100% Filler</span><span class="ec">8 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbs7"><tr data-t="Filler" style=""><td class="n">1</td><td class="n">144</td><td><span class="etf">Wanderer</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">145</td><td><span class="etf">Successor of the Forbidden Jutsu</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">3</td><td class="n">146</td><td><span class="etf">The Successor&#x27;s Wish</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">147</td><td><span class="etf">Rogue Ninja&#x27;s Past</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">5</td><td class="n">148</td><td><span class="etf">Heir to Darkness</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">149</td><td><span class="etf">Separation</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">7</td><td class="n">150</td><td><span class="etf">The Forbidden Jutsu Released</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">151</td><td><span class="etf">Master and Student</span></td><td><span class="b bf">Filler</span></td></tr>
+</tbody></table></div>
+<div id="s8" class="panel" style="display:none"><div class="sh"><span class="st">Pain&#x27;s Assault Arc</span><span class="sy">2009-2010</span><span class="fb" style="color:#22c55e;background:rgba(34,197,94,0.12);padding:2px 9px;border-radius:10px">8% Filler</span><span class="ec">24 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbs8"><tr data-t="Canon" style=""><td class="n">1</td><td class="n">152</td><td><span class="et">Somber News</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">153</td><td><span class="et">Following the Master&#x27;s Shadow</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">3</td><td class="n">154</td><td><span class="et">Decryption</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">155</td><td><span class="et">The First Challenge</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">5</td><td class="n">156</td><td><span class="et">Surpassing the Master</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">157</td><td><span class="et">Assault On the Leaf Village!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">7</td><td class="n">158</td><td><span class="et">Power to Believe</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">159</td><td><span class="et">Pain Vs. Kakashi</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">9</td><td class="n">160</td><td><span class="et">Mystery of Pain</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">161</td><td><span class="et">Surname Is Sarutobi! Given Name, Konohamaru!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">11</td><td class="n">162</td><td><span class="et">Pain to the World</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">163</td><td><span class="et">Explosion! Sage Mode</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">13</td><td class="n">164</td><td><span class="et">Danger! Sage Mode Limit Reached</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">165</td><td><span class="et">Nine Tails, Captured!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">15</td><td class="n">166</td><td><span class="et">Confessions</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">167</td><td><span class="et">Planetary Devastation</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">17</td><td class="n">168</td><td><span class="et">Fourth Hokage</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">169</td><td><span class="et">The Two Students</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">19</td><td class="n">170</td><td><span class="etf">Big Adventure! The Quest for the Fourth Hokage&#x27;s Legacy, Part 1</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">20</td><td class="n">171</td><td><span class="etf">Big Adventure! The Quest for the Fourth Hokage&#x27;s Legacy, Part 2</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">21</td><td class="n">172</td><td><span class="et">Meeting</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">22</td><td class="n">173</td><td><span class="et">Origin of Pain</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">23</td><td class="n">174</td><td><span class="et">Tale of Naruto Uzumaki</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">24</td><td class="n">175</td><td><span class="et">Hero of the Hidden Leaf</span></td><td><span class="b bc">Canon</span></td></tr>
+</tbody></table></div>
+<div id="s9" class="panel" style="display:none"><div class="sh"><span class="st">Konoha History (Filler)</span><span class="sy">2010</span><span class="fb" style="color:#ef4444;background:rgba(239,68,68,0.12);padding:2px 9px;border-radius:10px">100% Filler</span><span class="ec">21 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbs9"><tr data-t="Filler" style=""><td class="n">1</td><td class="n">176</td><td><span class="etf">Rookie Instructor Iruka</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">177</td><td><span class="etf">Iruka&#x27;s Ordeal</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">3</td><td class="n">178</td><td><span class="etf">Iruka&#x27;s Decision</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">179</td><td><span class="etf">Kakashi Hatake, the Jonin in Charge</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">5</td><td class="n">180</td><td><span class="etf">Inari&#x27;s Courage Put to the Test</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">181</td><td><span class="etf">Naruto&#x27;s School of Revenge</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">7</td><td class="n">182</td><td><span class="etf">Gaara&#x27;s Bond</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">183</td><td><span class="etf">Naruto: Outbreak</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">9</td><td class="n">184</td><td><span class="etf">Deploy! Team Tenten</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">185</td><td><span class="etf">Animal District</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">11</td><td class="n">186</td><td><span class="etf">Ah, the Medicine of Youth</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">187</td><td><span class="etf">Gutsy Master and Student: The Training</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">13</td><td class="n">188</td><td><span class="etf">Record of the Gutsy Ninja Master and Student</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">189</td><td><span class="etf">Sasuke&#x27;s Paw Encyclopedia</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">15</td><td class="n">190</td><td><span class="etf">Naruto and the Old Soldier</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">191</td><td><span class="etf">Kakashi Love Song</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">17</td><td class="n">192</td><td><span class="etf">Neji Chronicles</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">193</td><td><span class="etf">The Man Who Died Twice</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">19</td><td class="n">194</td><td><span class="etf">The Worst Three-Legged Race</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">20</td><td class="n">195</td><td><span class="etf">Team 10&#x27;s Teamwork</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">21</td><td class="n">196</td><td><span class="etf">Drive Towards Darkness</span></td><td><span class="b bf">Filler</span></td></tr>
+</tbody></table></div>
+<div id="s10" class="panel" style="display:none"><div class="sh"><span class="st">Five Kage Summit Arc</span><span class="sy">2010</span><span class="fb" style="color:#22c55e;background:rgba(34,197,94,0.12);padding:2px 9px;border-radius:10px">0% Filler</span><span class="ec">26 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbs10"><tr data-t="Canon" style=""><td class="n">1</td><td class="n">197</td><td><span class="et">The Sixth Hokage Danzo</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">198</td><td><span class="et">Five Kage Summit&#x27;s Eve</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">3</td><td class="n">199</td><td><span class="et">Enter the Five Kage!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">200</td><td><span class="et">Naruto&#x27;s Plea</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">5</td><td class="n">201</td><td><span class="et">Painful Decision</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">202</td><td><span class="et">Racing Lightning</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">7</td><td class="n">203</td><td><span class="et">Sasuke&#x27;s Ninja Way</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">204</td><td><span class="et">Power of the Five Kage</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">9</td><td class="n">205</td><td><span class="et">Declaration of War</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">206</td><td><span class="et">Sakura&#x27;s Feelings</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">11</td><td class="n">207</td><td><span class="et">The Tailed Beast vs. The Tailless Tailed Beast</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">208</td><td><span class="et">As One&#x27;s Friend</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">13</td><td class="n">209</td><td><span class="et">Danzo&#x27;s Right Arm</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">210</td><td><span class="et">The Forbidden Visual Jutsu</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">15</td><td class="n">211</td><td><span class="et">Danzo Shimura</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">212</td><td><span class="et">Sakura&#x27;s Resolve</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">17</td><td class="n">213</td><td><span class="et">Lost Bonds</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">214</td><td><span class="et">The Burden</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">19</td><td class="n">215</td><td><span class="et">Two Fates</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">20</td><td class="n">216</td><td><span class="et">High-Level Shinobi</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">21</td><td class="n">217</td><td><span class="et">The Infiltrator</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">22</td><td class="n">218</td><td><span class="et">The Five Great Nations Mobilize</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">23</td><td class="n">219</td><td><span class="et">Kakashi Hatake, The Hokage</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">24</td><td class="n">220</td><td><span class="et">Prophecy of the Great Lord Elder</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">25</td><td class="n">221</td><td><span class="et">Storage</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">26</td><td class="n">222</td><td><span class="et">The Five Kage&#x27;s Decision</span></td><td><span class="b bc">Canon</span></td></tr>
+</tbody></table></div>
+<div id="s11" class="panel" style="display:none"><div class="sh"><span class="st">Paradise Life (Filler)</span><span class="sy">2011</span><span class="fb" style="color:#ef4444;background:rgba(239,68,68,0.12);padding:2px 9px;border-radius:10px">100% Filler</span><span class="ec">20 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbs11"><tr data-t="Filler" style=""><td class="n">1</td><td class="n">223</td><td><span class="etf">The Young Man and the Sea</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">224</td><td><span class="etf">The Ninja of Benisu</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">3</td><td class="n">225</td><td><span class="etf">The Cursed Ghost Ship</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">226</td><td><span class="etf">Battleship Island</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">5</td><td class="n">227</td><td><span class="etf">The Forgotten Island</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">228</td><td><span class="etf">Fight! Rock Lee!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">7</td><td class="n">229</td><td><span class="etf">Eat or Die! Mushrooms from Hell</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">230</td><td><span class="etf">Revenge of the Shadow Clones</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">9</td><td class="n">231</td><td><span class="etf">The Closed Route</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">232</td><td><span class="etf">The Girls Get-Together</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">11</td><td class="n">233</td><td><span class="etf">Naruto&#x27;s Imposter</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">234</td><td><span class="etf">Naruto&#x27;s Favorite Student</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">13</td><td class="n">235</td><td><span class="etf">The Kunoichi of Nadeshiko Village</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">236</td><td><span class="etf">Friends You Can Count On</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">15</td><td class="n">237</td><td><span class="etf">Ah, My Hero Lady Tsunade!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">238</td><td><span class="etf">Sai&#x27;s Day Off</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">17</td><td class="n">239</td><td><span class="etf">The Legendary Ino-Shika-Cho Trio</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">240</td><td><span class="etf">Kiba&#x27;s Determination</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">19</td><td class="n">241</td><td><span class="etf">Kakashi, My Eternal Rival!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">20</td><td class="n">242</td><td><span class="etf">Naruto&#x27;s Vow</span></td><td><span class="b bf">Filler</span></td></tr>
+</tbody></table></div>
+<div id="s12" class="panel" style="display:none"><div class="sh"><span class="st">Fourth Shinobi War: Countdown</span><span class="sy">2011</span><span class="fb" style="color:#22c55e;background:rgba(34,197,94,0.12);padding:2px 9px;border-radius:10px">0% Filler</span><span class="ec">14 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbs12"><tr data-t="Canon" style=""><td class="n">1</td><td class="n">243</td><td><span class="et">Land Ahoy! Is This the Island of Paradise?</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">244</td><td><span class="et">Killer Bee and Motoi</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">3</td><td class="n">245</td><td><span class="et">The Next Challenge! Naruto vs. The Nine Tails!!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">246</td><td><span class="et">The Orange Spark</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">5</td><td class="n">247</td><td><span class="et">Target: Nine Tails</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">248</td><td><span class="et">The Fourth Hokage&#x27;s Death Match</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">7</td><td class="n">249</td><td><span class="et">Thank You</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">250</td><td><span class="et">Battle in Paradise! the Odd Beast vs. the Monster!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">9</td><td class="n">251</td><td><span class="et">The Man Named Kisame</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">252</td><td><span class="et">The Angelic Herald of Death</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">11</td><td class="n">253</td><td><span class="et">The Bridge to Peace</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">254</td><td><span class="et">The Super Secret S-Rank Mission</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">13</td><td class="n">255</td><td><span class="et">The Artist Returns</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">256</td><td><span class="et">Assemble! Allied Shinobi Forces!</span></td><td><span class="b bc">Canon</span></td></tr>
+</tbody></table></div>
+<div id="s13" class="panel" style="display:none"><div class="sh"><span class="st">Fourth Shinobi War: Confrontation</span><span class="sy">2012</span><span class="fb" style="color:#f59e0b;background:rgba(245,158,11,0.12);padding:2px 9px;border-radius:10px">51% Filler</span><span class="ec">39 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbs13"><tr data-t="Filler" style=""><td class="n">1</td><td class="n">257</td><td><span class="etf">Meeting</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">258</td><td><span class="etf">Rivals</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">3</td><td class="n">259</td><td><span class="etf">Rift</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">260</td><td><span class="etf">Parting</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">5</td><td class="n">261</td><td><span class="et">For My Friend</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">262</td><td><span class="et">War Begins!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">7</td><td class="n">263</td><td><span class="et">Sai and Shin</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">264</td><td><span class="et">Secrets of the Reanimation Jutsu</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">9</td><td class="n">265</td><td><span class="et">An Old Nemesis Returns</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">266</td><td><span class="et">The First and Last Opponent</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">11</td><td class="n">267</td><td><span class="et">The Brilliant Military Advisor of the Hidden Leaf</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">268</td><td><span class="et">Battleground!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">13</td><td class="n">269</td><td><span class="et">Forbidden Words</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">270</td><td><span class="et">Golden Bonds</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">15</td><td class="n">271</td><td><span class="etf">Road to Sakura</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">272</td><td><span class="et">Mifune vs. Hanzo</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">17</td><td class="n">273</td><td><span class="et">True Kindness</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">274</td><td><span class="et">The Complete Ino-Shika-Cho Formation!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">19</td><td class="n">275</td><td><span class="et">A Message from the Heart</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">20</td><td class="n">276</td><td><span class="et">Attack of the Gedo Statue</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">21</td><td class="n">277</td><td><span class="et">Unison Sign</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">22</td><td class="n">278</td><td><span class="et">Medic Ninja in Danger</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">23</td><td class="n">279</td><td><span class="etf">White Zetsu&#x27;s Trap</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">24</td><td class="n">280</td><td><span class="etf">Aesthetics of an Artist</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">25</td><td class="n">281</td><td><span class="etf">The Allied Mom Force!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">26</td><td class="n">282</td><td><span class="et">The Secret Origin of the Ultimate Tag Team!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">27</td><td class="n">283</td><td><span class="et">Two Suns</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">28</td><td class="n">284</td><td><span class="etf">Helmet Splitter: Jinin Akebino!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">29</td><td class="n">285</td><td><span class="etf">User of the Scorch Style: Pakura of the Sand!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">30</td><td class="n">286</td><td><span class="etf">Things You Can&#x27;t Get Back</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">31</td><td class="n">287</td><td><span class="etf">One Worth Betting On</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">32</td><td class="n">288</td><td><span class="etf">Danger: Jinpachi and Kushimaru!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">33</td><td class="n">289</td><td><span class="etf">The Lightning Blade: Ameyuri Ringo!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">34</td><td class="n">290</td><td><span class="etf">Power: Episode 1</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">35</td><td class="n">291</td><td><span class="etf">Power: Episode 2</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">36</td><td class="n">292</td><td><span class="etf">Power: Episode 3</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">37</td><td class="n">293</td><td><span class="etf">Power: Episode 4</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">38</td><td class="n">294</td><td><span class="etf">Power: Episode 5</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">39</td><td class="n">295</td><td><span class="etf">Power: Episode Final</span></td><td><span class="b bf">Filler</span></td></tr>
+</tbody></table></div>
+<div id="s14" class="panel" style="display:none"><div class="sh"><span class="st">Fourth Shinobi War: Climax Part 1</span><span class="sy">2012-2013</span><span class="fb" style="color:#ef4444;background:rgba(239,68,68,0.12);padding:2px 9px;border-radius:10px">72% Filler</span><span class="ec">25 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbs14"><tr data-t="Mixed" style=""><td class="n">1</td><td class="n">296</td><td><span class="et">Naruto Enters the Battle</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">297</td><td><span class="et">A Father&#x27;s Hope, a Mother&#x27;s Love</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">3</td><td class="n">298</td><td><span class="et">Contact! Naruto vs. Itachi</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">299</td><td><span class="et">The Acknowledged One</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">5</td><td class="n">300</td><td><span class="et">The Mizukage, the Giant Clam, and the Mirage</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">301</td><td><span class="et">Paradox</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">7</td><td class="n">302</td><td><span class="et">Terror! the Steam Imp</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">303</td><td><span class="etf">Ghosts from the Past</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">9</td><td class="n">304</td><td><span class="etf">The Underworld Transfer Jutsu</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">305</td><td><span class="etf">The Vengeful</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">11</td><td class="n">306</td><td><span class="etf">The Heart&#x27;s Eye</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">307</td><td><span class="etf">Fade Into the Moonlight</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">13</td><td class="n">308</td><td><span class="etf">Crescent Moon Night</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">309</td><td><span class="etf">The A-Rank Mission: Food Fight!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">15</td><td class="n">310</td><td><span class="etf">The Fallen Castle</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">311</td><td><span class="etf">Prologue of Road to Ninja</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">17</td><td class="n">312</td><td><span class="etf">The Old Master and the Dragon&#x27;s Eye</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">313</td><td><span class="etf">Rain Followed by Snow, with Some Lightning</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">19</td><td class="n">314</td><td><span class="etf">The Sad Sun Shower</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">20</td><td class="n">315</td><td><span class="etf">Lingering Snow</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">21</td><td class="n">316</td><td><span class="etf">The Reanimated Allied Forces</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">22</td><td class="n">317</td><td><span class="etf">Shino vs. Torune</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">23</td><td class="n">318</td><td><span class="etf">A Hole in the Heart: the Other Jinchuriki</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">24</td><td class="n">319</td><td><span class="etf">The Soul Living Inside the Puppet</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">25</td><td class="n">320</td><td><span class="etf">Run, Omoi!</span></td><td><span class="b bf">Filler</span></td></tr>
+</tbody></table></div>
+<div id="s15" class="panel" style="display:none"><div class="sh"><span class="st">Fourth Shinobi War: Climax Part 2</span><span class="sy">2013</span><span class="fb" style="color:#22c55e;background:rgba(34,197,94,0.12);padding:2px 9px;border-radius:10px">7% Filler</span><span class="ec">28 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbs15"><tr data-t="Canon" style=""><td class="n">1</td><td class="n">321</td><td><span class="et">Reinforcements Arrive</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">322</td><td><span class="et">Madara Uchiha</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">3</td><td class="n">323</td><td><span class="et">The Five Kage Assemble</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">324</td><td><span class="et">The Unbreakable Mask and the Shattered Bubble</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">5</td><td class="n">325</td><td><span class="et">Jinchuriki vs. Jinchuriki!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">326</td><td><span class="et">Four Tails, the King of Sage Monkeys</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">7</td><td class="n">327</td><td><span class="et">Nine Tails</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">328</td><td><span class="et">Kurama</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">9</td><td class="n">329</td><td><span class="et">Two-Man Team</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">330</td><td><span class="et">Promise of Victory</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">11</td><td class="n">331</td><td><span class="et">Eyes That See in the Dark</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">332</td><td><span class="et">The Will of Stone</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">13</td><td class="n">333</td><td><span class="et">The Risks of the Reanimation Jutsu</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">334</td><td><span class="et">Sibling Tag Team</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">15</td><td class="n">335</td><td><span class="et">To Each Their Own Leaf</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">336</td><td><span class="et">Kabuto Yakushi</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">17</td><td class="n">337</td><td><span class="et">The Izanami Activated</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">338</td><td><span class="et">Izanagi and Izanami</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">19</td><td class="n">339</td><td><span class="et">I Will Love You Always</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">20</td><td class="n">340</td><td><span class="et">Reanimation Jutsu, Release!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">21</td><td class="n">341</td><td><span class="et">Orochimaru&#x27;s Return</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">22</td><td class="n">342</td><td><span class="et">Secret of the Transportation Technique</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">23</td><td class="n">343</td><td><span class="et">Who Are You?</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">24</td><td class="n">344</td><td><span class="et">Obito and Madara</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">25</td><td class="n">345</td><td><span class="et">I&#x27;m in Hell</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">26</td><td class="n">346</td><td><span class="et">World of Dreams</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">27</td><td class="n">347</td><td><span class="etf">Creeping Shadow</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">28</td><td class="n">348</td><td><span class="etf">The New Akatsuki</span></td><td><span class="b bf">Filler</span></td></tr>
+</tbody></table></div>
+<div id="s16" class="panel" style="display:none"><div class="sh"><span class="st">Kakashi ANBU Arc (Filler)</span><span class="sy">2014</span><span class="fb" style="color:#ef4444;background:rgba(239,68,68,0.12);padding:2px 9px;border-radius:10px">100% Filler</span><span class="ec">13 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbs16"><tr data-t="Filler" style=""><td class="n">1</td><td class="n">349</td><td><span class="etf">Kakashi: Shadow of the ANBU Black Ops - A Mask That Hides the Heart</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">350</td><td><span class="etf">Kakashi: Shadow of the ANBU Black Ops - Minato&#x27;s Death</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">3</td><td class="n">351</td><td><span class="etf">Kakashi: Shadow of the ANBU Black Ops - Hashirama&#x27;s Cells</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">352</td><td><span class="etf">Kakashi: Shadow of the ANBU Black Ops - The Rogue Ninja Orochimaru</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">5</td><td class="n">353</td><td><span class="etf">Kakashi: Shadow of the ANBU Black Ops - Orochimaru&#x27;s Test Subjects</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">354</td><td><span class="etf">Kakashi: Shadow of the ANBU Black Ops - Their Own Paths</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">7</td><td class="n">355</td><td><span class="etf">Kakashi: Shadow of the ANBU Black Ops - The Targeted Sharingan</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">356</td><td><span class="etf">Kakashi: Shadow of the ANBU Black Ops - A Shinobi of the Leaf</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">9</td><td class="n">357</td><td><span class="etf">Kakashi: Shadow of the ANBU Black Ops - An Uchiha ANBU</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">358</td><td><span class="etf">Kakashi: Shadow of the ANBU Black Ops - Coup D&#x27;Etat</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">11</td><td class="n">359</td><td><span class="etf">Kakashi: Shadow of the ANBU Black Ops - The Night of the Tragedy</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">360</td><td><span class="etf">Kakashi: Shadow of the ANBU Black Ops - Jonin Leader</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">13</td><td class="n">361</td><td><span class="etf">Kakashi: Shadow of the ANBU Black Ops - Squad Seven</span></td><td><span class="b bf">Filler</span></td></tr>
+</tbody></table></div>
+<div id="s17" class="panel" style="display:none"><div class="sh"><span class="st">Birth of Ten-Tails Jinchuriki</span><span class="sy">2014</span><span class="fb" style="color:#22c55e;background:rgba(34,197,94,0.12);padding:2px 9px;border-radius:10px">16% Filler</span><span class="ec">32 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbs17"><tr data-t="Mixed" style=""><td class="n">1</td><td class="n">362</td><td><span class="et">Kakashi&#x27;s Resolve</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">363</td><td><span class="et">The Allied Shinobi Forces Jutsu</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">3</td><td class="n">364</td><td><span class="et">The Ties That Bind</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">365</td><td><span class="et">Those Who Dance in the Shadows</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">5</td><td class="n">366</td><td><span class="et">The All-Knowing</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">367</td><td><span class="et">Hashirama and Madara</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">7</td><td class="n">368</td><td><span class="et">Era of Warring States</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">369</td><td><span class="et">My True Dream</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">9</td><td class="n">370</td><td><span class="et">Sasuke&#x27;s Answer</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">371</td><td><span class="et">Hole</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">11</td><td class="n">372</td><td><span class="et">Something to Fill the Hole</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">373</td><td><span class="et">Team 7, Assemble!</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">13</td><td class="n">374</td><td><span class="et">The New Three-Way Deadlock</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">375</td><td><span class="et">Kakashi vs. Obito</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">15</td><td class="n">376</td><td><span class="etf">The Directive to Take the Nine Tails</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">377</td><td><span class="etf">Naruto vs. Mecha Naruto</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">17</td><td class="n">378</td><td><span class="et">The Ten Tails&#x27; Jinchuriki</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">379</td><td><span class="et">An Opening</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">19</td><td class="n">380</td><td><span class="et">The Day Naruto Was Born</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">20</td><td class="n">381</td><td><span class="et">The Divine Tree</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">21</td><td class="n">382</td><td><span class="et">A Shinobi&#x27;s Dream</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">22</td><td class="n">383</td><td><span class="et">Pursuing Hope</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">23</td><td class="n">384</td><td><span class="et">A Heart Filled With Comrades</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">24</td><td class="n">385</td><td><span class="et">Obito Uchiha</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">25</td><td class="n">386</td><td><span class="et">I&#x27;m Always Watching</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">26</td><td class="n">387</td><td><span class="et">The Promise That Was Kept</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">27</td><td class="n">388</td><td><span class="etf">My First Friend</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">28</td><td class="n">389</td><td><span class="etf">The Adored Elder Sister</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">29</td><td class="n">390</td><td><span class="etf">Hanabi&#x27;s Decision</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">30</td><td class="n">391</td><td><span class="et">Madara Uchiha Arises</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">31</td><td class="n">392</td><td><span class="et">The Hidden Heart</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">32</td><td class="n">393</td><td><span class="et">A True Ending</span></td><td><span class="b bc">Canon</span></td></tr>
+</tbody></table></div>
+<div id="s18" class="panel" style="display:none"><div class="sh"><span class="st">Filler Arc</span><span class="sy">2014-2015</span><span class="fb" style="color:#ef4444;background:rgba(239,68,68,0.12);padding:2px 9px;border-radius:10px">100% Filler</span><span class="ec">20 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbs18"><tr data-t="Filler" style=""><td class="n">1</td><td class="n">394</td><td><span class="etf">The New Chunin Exams</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">395</td><td><span class="etf">The Chunin Exams Begin!</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">3</td><td class="n">396</td><td><span class="etf">The Three Questions</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">397</td><td><span class="etf">One Worthy As A Leader</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">5</td><td class="n">398</td><td><span class="etf">The Night Before the Second Exam</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">399</td><td><span class="etf">Demon Desert Survival</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">7</td><td class="n">400</td><td><span class="etf">As a Taijutsu User</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">401</td><td><span class="etf">The Ultimate</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">9</td><td class="n">402</td><td><span class="etf">Escape vs. Pursuit</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">403</td><td><span class="etf">Unwavering Gutsiness</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">11</td><td class="n">404</td><td><span class="etf">Tenten&#x27;s Troubles</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">405</td><td><span class="etf">The Imprisoned Pair</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">13</td><td class="n">406</td><td><span class="etf">The Place Where I Belong</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">407</td><td><span class="etf">The Yamanaka Clan: Secret Ninjutsu</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">15</td><td class="n">408</td><td><span class="etf">The Cursed Puppet</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">409</td><td><span class="etf">Their Backs</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">17</td><td class="n">410</td><td><span class="etf">The Hidden Plot Set Into Motion</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">411</td><td><span class="etf">The Targeted Tailed Beast</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">19</td><td class="n">412</td><td><span class="etf">Neji&#x27;s Judgement</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">20</td><td class="n">413</td><td><span class="etf">Hopes Entrusted to the Future</span></td><td><span class="b bf">Filler</span></td></tr>
+</tbody></table></div>
+<div id="s19" class="panel" style="display:none"><div class="sh"><span class="st">Kaguya Otsutsuki Arc</span><span class="sy">2015-2016</span><span class="fb" style="color:#ef4444;background:rgba(239,68,68,0.12);padding:2px 9px;border-radius:10px">76% Filler</span><span class="ec">37 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbs19"><tr data-t="Canon" style=""><td class="n">1</td><td class="n">414</td><td><span class="et">On the Brink of Death</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">415</td><td><span class="et">The Two Mangekyo</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">3</td><td class="n">416</td><td><span class="etf">The Formation of Team Minato</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">417</td><td><span class="etf">You&#x27;ll Be My Backup</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">5</td><td class="n">418</td><td><span class="et">The Blue Beast vs Six Paths Madara</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">419</td><td><span class="et">Papa&#x27;s Youth</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">7</td><td class="n">420</td><td><span class="et">The Eight Inner Gates Formation</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">421</td><td><span class="et">The Sage of the Six Paths</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">9</td><td class="n">422</td><td><span class="etf">The One Who Will Inherit</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">423</td><td><span class="etf">Naruto&#x27;s Rival</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">11</td><td class="n">424</td><td><span class="et">To Rise Up</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">425</td><td><span class="et">The Infinite Dream</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">13</td><td class="n">426</td><td><span class="et">The Infinite Tsukuyomi</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">427</td><td><span class="etf">To the Dream World</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">15</td><td class="n">428</td><td><span class="etf">Where Tenten Belongs</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">429</td><td><span class="etf">Killer Bee Rappuden, Part 1</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">17</td><td class="n">430</td><td><span class="etf">Killer Bee Rappuden, Part 2</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">431</td><td><span class="etf">To See That Smile, Just One More Time</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">19</td><td class="n">432</td><td><span class="etf">The Loser Ninja</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">20</td><td class="n">433</td><td><span class="etf">The Search Mission</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">21</td><td class="n">434</td><td><span class="etf">Team Jiraiya</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">22</td><td class="n">435</td><td><span class="etf">Order of Priority</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">23</td><td class="n">436</td><td><span class="etf">The Masked Man</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">24</td><td class="n">437</td><td><span class="etf">The Sealed Power</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">25</td><td class="n">438</td><td><span class="etf">The Rules or a Comrade</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">26</td><td class="n">439</td><td><span class="etf">The Child of Prophecy</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">27</td><td class="n">440</td><td><span class="etf">The Caged Bird</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">28</td><td class="n">441</td><td><span class="etf">Returning Home</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">29</td><td class="n">442</td><td><span class="etf">The Mutual Path</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">30</td><td class="n">443</td><td><span class="etf">The Difference in Power</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">31</td><td class="n">444</td><td><span class="etf">Leaving the Village</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">32</td><td class="n">445</td><td><span class="etf">Pursuers</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">33</td><td class="n">446</td><td><span class="etf">Collision</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">34</td><td class="n">447</td><td><span class="etf">Another Moon</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">35</td><td class="n">448</td><td><span class="etf">Comrade</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">36</td><td class="n">449</td><td><span class="etf">The Shinobi Unite</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">37</td><td class="n">450</td><td><span class="etf">Rival</span></td><td><span class="b bf">Filler</span></td></tr>
+</tbody></table></div>
+<div id="s20" class="panel" style="display:none"><div class="sh"><span class="st">Itachi Shinden (Filler)</span><span class="sy">2016</span><span class="fb" style="color:#22c55e;background:rgba(34,197,94,0.12);padding:2px 9px;border-radius:10px">0% Filler</span><span class="ec">8 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbs20"><tr data-t="Mixed" style=""><td class="n">1</td><td class="n">451</td><td><span class="et">Itachi&#x27;s Story - Light and Darkness: Birth and Death</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">452</td><td><span class="et">Itachi&#x27;s Story - Light and Darkness: The Genius</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">3</td><td class="n">453</td><td><span class="et">Itachi&#x27;s Story - Light and Darkness: The Pain of Living</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">454</td><td><span class="et">Itachi&#x27;s Story - Light and Darkness: Shisui&#x27;s Request</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">5</td><td class="n">455</td><td><span class="et">Itachi&#x27;s Story - Light and Darkness: Moonlit Night</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">456</td><td><span class="et">Itachi&#x27;s Story - Light and Darkness: The Darkness of the Akatsuki</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">7</td><td class="n">457</td><td><span class="et">Itachi&#x27;s Story - Light and Darkness: Partner</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">458</td><td><span class="et">Itachi&#x27;s Story - Light and Darkness: Truth</span></td><td><span class="b bm">Mixed</span></td></tr>
+</tbody></table></div>
+<div id="s21" class="panel" style="display:none"><div class="sh"><span class="st">Sasuke Shinden &amp; Epilogue</span><span class="sy">2016</span><span class="fb" style="color:#22c55e;background:rgba(34,197,94,0.12);padding:2px 9px;border-radius:10px">24% Filler</span><span class="ec">21 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbs21"><tr data-t="Canon" style=""><td class="n">1</td><td class="n">459</td><td><span class="et">She of the Beginning</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">460</td><td><span class="et">Kaguya Otsutsuki</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">3</td><td class="n">461</td><td><span class="et">Hagoromo and Hamura</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">462</td><td><span class="et">A Fabricated Past</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">5</td><td class="n">463</td><td><span class="et">The No. 1 Most Unpredictable Ninja</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">464</td><td><span class="etf">Ninshuu: The Ninja Creed</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">7</td><td class="n">465</td><td><span class="etf">Ashura and Indra</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">466</td><td><span class="etf">The Tumultuous Journey</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">9</td><td class="n">467</td><td><span class="etf">Ashura&#x27;s Decision</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">468</td><td><span class="etf">The Successor</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">11</td><td class="n">469</td><td><span class="et">A Special Mission</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">470</td><td><span class="et">Connecting Thoughts</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">13</td><td class="n">471</td><td><span class="et">The Two of Them...Always</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">472</td><td><span class="et">You Better...</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">15</td><td class="n">473</td><td><span class="et">The Sharingan Revived</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">474</td><td><span class="et">Congratulations</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">17</td><td class="n">475</td><td><span class="et">The Final Valley</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">476</td><td><span class="et">The Final Battle</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">19</td><td class="n">477</td><td><span class="et">Naruto and Sasuke</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Mixed" style="background:rgba(22,27,34,0.4);"><td class="n">20</td><td class="n">478</td><td><span class="et">The Unison Sign</span></td><td><span class="b bm">Mixed</span></td></tr>
+<tr data-t="Mixed" style=""><td class="n">21</td><td class="n">479</td><td><span class="et">Naruto Uzumaki!!</span></td><td><span class="b bm">Mixed</span></td></tr>
+</tbody></table></div>
+<div id="s22" class="panel" style="display:none"><div class="sh"><span class="st">Naruto&#x27;s Wedding Arc</span><span class="sy">2017</span><span class="fb" style="color:#22c55e;background:rgba(34,197,94,0.12);padding:2px 9px;border-radius:10px">19% Filler</span><span class="ec">21 eps</span></div><table><thead><tr><th>#</th><th>Ep</th><th>Title</th><th>Type</th></tr></thead><tbody id="tbs22"><tr data-t="Filler" style=""><td class="n">1</td><td class="n">480</td><td><span class="etf">Naruto and Hinata</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">2</td><td class="n">481</td><td><span class="etf">Sasuke and Sakura</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style=""><td class="n">3</td><td class="n">482</td><td><span class="etf">Gaara and Shikamaru</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Filler" style="background:rgba(22,27,34,0.4);"><td class="n">4</td><td class="n">483</td><td><span class="etf">Jiraiya and Kakashi</span></td><td><span class="b bf">Filler</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">5</td><td class="n">484</td><td><span class="et">Sasuke&#x27;s Story: Sunrise, Part 1: The Exploding Human</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">6</td><td class="n">485</td><td><span class="et">Sasuke&#x27;s Story: Sunrise, Part 2: Coliseum</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">7</td><td class="n">486</td><td><span class="et">Sasuke&#x27;s Story: Sunrise, Part 3: Fuushin</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">8</td><td class="n">487</td><td><span class="et">Sasuke&#x27;s Story: Sunrise, Part 4: The Ketsuryugan</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">9</td><td class="n">488</td><td><span class="et">Sasuke&#x27;s Story: Sunrise, Part 5: The Last One</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">10</td><td class="n">489</td><td><span class="et">Shikamaru&#x27;s Story, Part 1: The State of Affairs</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">11</td><td class="n">490</td><td><span class="et">Shikamaru&#x27;s Story, Part 2: Dark Clouds</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">12</td><td class="n">491</td><td><span class="et">Shikamaru&#x27;s Story, Part 3: Recklessness</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">13</td><td class="n">492</td><td><span class="et">Shikamaru&#x27;s Story, Part 4: Cloud of Suspicion</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">14</td><td class="n">493</td><td><span class="et">Shikamaru&#x27;s Story, Part 5: Dawn</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">15</td><td class="n">494</td><td><span class="et">Hidden Leaf Story: Naruto&#x27;s Wedding, Part 1</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">16</td><td class="n">495</td><td><span class="et">Hidden Leaf Story: Naruto&#x27;s Wedding, Part 2</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">17</td><td class="n">496</td><td><span class="et">Hidden Leaf Story: Naruto&#x27;s Wedding, Part 3</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">18</td><td class="n">497</td><td><span class="et">Hidden Leaf Story: Naruto&#x27;s Wedding, Part 4</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">19</td><td class="n">498</td><td><span class="et">Hidden Leaf Story: Naruto&#x27;s Wedding, Part 5</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style="background:rgba(22,27,34,0.4);"><td class="n">20</td><td class="n">499</td><td><span class="et">Hidden Leaf Story: Naruto&#x27;s Wedding, Part 6</span></td><td><span class="b bc">Canon</span></td></tr>
+<tr data-t="Canon" style=""><td class="n">21</td><td class="n">500</td><td><span class="et">Hidden Leaf Story: Naruto&#x27;s Wedding, Part 7</span></td><td><span class="b bc">Canon</span></td></tr>
+</tbody></table></div>
+
+</div>
+</div>
+<script>
+var cShow = 0;
+var cS = "n1";
+var cF = 'All';
+var nFirst = "n1";
+var sFirst = "s1";
+var nStats = [74, 90, 56];
+var sStats = [233, 203, 64];
+var nSbHTML = "<button class=\"sb active\" onclick=\"showS('n1')\" title=\"Season 1 3% filler\"><span>S1</span><span class=\"fp fl\">3%</span></button>\n<button class=\"sb\" onclick=\"showS('n2')\" title=\"Season 2 0% filler\"><span>S2</span><span class=\"fp fl\">0%</span></button>\n<button class=\"sb\" onclick=\"showS('n3')\" title=\"Season 3 15% filler\"><span>S3</span><span class=\"fp fl\">15%</span></button>\n<button class=\"sb\" onclick=\"showS('n4')\" title=\"Season 4 88% filler\"><span>S4</span><span class=\"fp fh\">88%</span></button>\n<button class=\"sb\" onclick=\"showS('n5')\" title=\"Season 5 98% filler\"><span>S5</span><span class=\"fp fh\">98%</span></button>\n";
+var sSbHTML = "<button class=\"sb\" onclick=\"showS('s1')\" title=\"Kazekage Rescue Arc 0% filler\"><span>S1</span><span class=\"fp fl\">0%</span></button>\n<button class=\"sb\" onclick=\"showS('s2')\" title=\"Tenchi Bridge Arc 0% filler\"><span>S2</span><span class=\"fp fl\">0%</span></button>\n<button class=\"sb\" onclick=\"showS('s3')\" title=\"Twelve Guardian Ninja (Filler) 83% filler\"><span>S3</span><span class=\"fp fh\">83%</span></button>\n<button class=\"sb\" onclick=\"showS('s4')\" title=\"Hidan &amp; Kakuzu Arc 0% filler\"><span>S4</span><span class=\"fp fl\">0%</span></button>\n<button class=\"sb\" onclick=\"showS('s5')\" title=\"Three-Tails Arc (Filler) 100% filler\"><span>S5</span><span class=\"fp fh\">100%</span></button>\n<button class=\"sb\" onclick=\"showS('s6')\" title=\"Itachi Pursuit Arc 0% filler\"><span>S6</span><span class=\"fp fl\">0%</span></button>\n<button class=\"sb\" onclick=\"showS('s7')\" title=\"Six-Tails Unleashed (Filler) 100% filler\"><span>S7</span><span class=\"fp fh\">100%</span></button>\n<button class=\"sb\" onclick=\"showS('s8')\" title=\"Pain&#x27;s Assault Arc 8% filler\"><span>S8</span><span class=\"fp fl\">8%</span></button>\n<button class=\"sb\" onclick=\"showS('s9')\" title=\"Konoha History (Filler) 100% filler\"><span>S9</span><span class=\"fp fh\">100%</span></button>\n<button class=\"sb\" onclick=\"showS('s10')\" title=\"Five Kage Summit Arc 0% filler\"><span>S10</span><span class=\"fp fl\">0%</span></button>\n<button class=\"sb\" onclick=\"showS('s11')\" title=\"Paradise Life (Filler) 100% filler\"><span>S11</span><span class=\"fp fh\">100%</span></button>\n<button class=\"sb\" onclick=\"showS('s12')\" title=\"Fourth Shinobi War: Countdown 0% filler\"><span>S12</span><span class=\"fp fl\">0%</span></button>\n<button class=\"sb\" onclick=\"showS('s13')\" title=\"Fourth Shinobi War: Confrontation 51% filler\"><span>S13</span><span class=\"fp fm\">51%</span></button>\n<button class=\"sb\" onclick=\"showS('s14')\" title=\"Fourth Shinobi War: Climax Part 1 72% filler\"><span>S14</span><span class=\"fp fh\">72%</span></button>\n<button class=\"sb\" onclick=\"showS('s15')\" title=\"Fourth Shinobi War: Climax Part 2 7% filler\"><span>S15</span><span class=\"fp fl\">7%</span></button>\n<button class=\"sb\" onclick=\"showS('s16')\" title=\"Kakashi ANBU Arc (Filler) 100% filler\"><span>S16</span><span class=\"fp fh\">100%</span></button>\n<button class=\"sb\" onclick=\"showS('s17')\" title=\"Birth of Ten-Tails Jinchuriki 16% filler\"><span>S17</span><span class=\"fp fl\">16%</span></button>\n<button class=\"sb\" onclick=\"showS('s18')\" title=\"Filler Arc 100% filler\"><span>S18</span><span class=\"fp fh\">100%</span></button>\n<button class=\"sb\" onclick=\"showS('s19')\" title=\"Kaguya Otsutsuki Arc 76% filler\"><span>S19</span><span class=\"fp fh\">76%</span></button>\n<button class=\"sb\" onclick=\"showS('s20')\" title=\"Itachi Shinden (Filler) 0% filler\"><span>S20</span><span class=\"fp fl\">0%</span></button>\n<button class=\"sb\" onclick=\"showS('s21')\" title=\"Sasuke Shinden &amp; Epilogue 24% filler\"><span>S21</span><span class=\"fp fl\">24%</span></button>\n<button class=\"sb\" onclick=\"showS('s22')\" title=\"Naruto&#x27;s Wedding Arc 19% filler\"><span>S22</span><span class=\"fp fl\">19%</span></button>\n";
+
+function initSidebar(html) {
+  document.getElementById('sb').innerHTML = html;
+}
+
+function switchShow(show) {
+  if (cShow === show) return;
+  document.getElementById(cS).style.display = 'none';
+  cShow = show;
+  var isN = show === 0;
+  document.getElementById('tabN').className = 'tab' + (isN ? ' actN' : '');
+  document.getElementById('tabS').className = 'tab' + (!isN ? ' actS2' : '');
+  document.getElementById('logo').className = 'logo ' + (isN ? 'logo-n' : 'logo-s');
+  document.getElementById('showTitle').textContent = isN ? 'Naruto' : 'Naruto Shippuden';
+  document.getElementById('showSub').textContent = (isN ? 220 : 500) + ' Episodes';
+  var st = isN ? nStats : sStats;
+  document.getElementById('statsBox').innerHTML =
+    '<span><b style="color:#22c55e">' + st[0] + '</b> Canon</span>' +
+    '<span><b style="color:#ef4444">' + st[1] + '</b> Filler</span>' +
+    '<span><b style="color:#f59e0b">' + st[2] + '</b> Mixed</span>';
+  initSidebar(isN ? nSbHTML : sSbHTML);
+  cS = isN ? nFirst : sFirst;
+  document.getElementById(cS).style.display = 'block';
+  document.getElementById('mn').scrollTop = 0;
+  cF = 'All';
+  updateFilterBtns();
+}
+
+function showS(id) {
+  document.getElementById(cS).style.display = 'none';
+  document.querySelectorAll('.sb').forEach(function(b) { b.className = 'sb'; });
+  cS = id;
+  document.getElementById(id).style.display = 'block';
+  var btn = document.querySelector('[onclick="showS(\''+id+'\')"]');
+  if (btn) btn.className = 'sb ' + (cShow === 0 ? 'active' : 'actS');
+  document.getElementById('mn').scrollTop = 0;
+  applyF();
+}
+
+function updateFilterBtns() {
+  var isN = cShow === 0;
+  document.getElementById('btnA').className = 'fb2' + (cF === 'All' ? (isN ? ' faAN' : ' faAS') : '');
+  document.getElementById('btnC').className = 'fb2' + (cF === 'Canon' ? ' faC' : '');
+  document.getElementById('btnF').className = 'fb2' + (cF === 'Filler' ? ' faF' : '');
+  document.getElementById('btnM').className = 'fb2' + (cF === 'Mixed' ? ' faM' : '');
+}
+
+function setF(f) {
+  cF = f;
+  updateFilterBtns();
+  applyF();
+}
+
+function applyF() {
+  document.querySelectorAll('#tb' + cS + ' tr').forEach(function(r) {
+    r.classList.toggle('hidden', cF !== 'All' && r.getAttribute('data-t') !== cF);
+  });
+}
+
+initSidebar(nSbHTML);
+document.getElementById(nFirst).style.display = 'block';
+document.querySelector('.sb').className = 'sb active';
+</script>
+</body>
+</html>
